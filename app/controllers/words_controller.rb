@@ -39,8 +39,6 @@ class WordsController < ActionController::API
 
     if EXCEPTIONS.has_key?(word.to_sym)
       response = { plural: EXCEPTIONS[word.to_sym] }
-    elsif AL_EXCEPTIONS.include?(word) || AU_EXCEPTIONS.include?(word)
-      response = { plural: word + "s" }
     elsif word[-1] == "x" || word[-1] == "z" || word[-1] == "s"
       response = { plural: word }
     elsif (last_letters(word) == "au" || last_letters(word) == "eu" || last_letters(word) == "eau") && !AU_EXCEPTIONS.include?(word)
