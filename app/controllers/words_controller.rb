@@ -41,9 +41,9 @@ class WordsController < ActionController::API
       response = { plural: EXCEPTIONS[word.to_sym] }
     elsif word[-1] == "x" || word[-1] == "z" || word[-1] == "s"
       response = { plural: word }
-    elsif (last_letters(word) == "au" || last_letters(word) == "eu" || last_letters(word) == "eau") && AU_EXCEPTIONS.include?(word)
+    elsif (last_letters(word) == "au" || last_letters(word) == "eu" || last_letters(word) == "eau") && !AU_EXCEPTIONS.include?(word)
       response = { plural: word + "x" }
-    elsif last_letters(word) == "al" && AL_EXCEPTIONS.include?(word)
+    elsif last_letters(word) == "al" && !AL_EXCEPTIONS.include?(word)
       response = { plural:  word.chop + "ux" }
     else
       response = { plural: word + "s" }
