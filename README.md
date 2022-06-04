@@ -1,25 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API used to pluralize french words.
 
-Things you may want to cover:
-
-* Ruby version
-  3.0.3
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You just need to go to https://french-pluralize-api.herokuapp.com/
+or https://french-pluralize-api.herokuapp.com/:word

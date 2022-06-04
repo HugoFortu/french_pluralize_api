@@ -9,6 +9,9 @@ class WordsController < ActionController::API
                   récital: "récitals",
                   corail: "coraux",
                   travail: "travaux",
+                  soupirail: "soupiraux",
+                  ail: "aulx",
+                  vantail: "vantaux",
                   vitrail: "vitraux",
                   bail: "baux",
                   bijou: "bijoux",
@@ -20,6 +23,8 @@ class WordsController < ActionController::API
                   pou: "poux"
                 }
 
+  AL_EXCEPTIONS = %w(acétal, ammonal, aval, bal, banal, bancal, fatal, fractal, morfal, naval, aéronaval, natal, anténatal, néonatal, périnatal, postnatal, prénatal, tonal, atonal, bitonal, polytonal, barbital, cal, captal, carnaval, cérémonial, chacal, chloral, chrysocal, copal, dial, dispersal, éthanal, festival, foiral, furfural, futal, gal, galgal, gardénal, graal, joual, kraal, kursaal, matorral, mescal, mezcal, méthanal, minerval, mistral, nopal, pal, pascal (hectopascal, kilopascal), penthotal, phénobarbital, pipéronal, raval, récital, régal, rétinal, rital, roberval, roseval, salicional, sal, sandal, santal, saroual, sial, sisal, sonal, tagal, tefal, tergal, thiopental, tical, tincal, véronal, zicral, corral, deal, goal, autogoal, revival, serial, spiritual, trial, caracal, chacal, gavial, gayal, narval, quetzal, rorqual, serval, metical, rial, riyal, ryal, cantal, emmental, emmenthal, floréal, germinal, prairial)
+  AU_EXCEPTIONS = %w(antitau, berimbau, burgau, crau, donau, grau, hessiau, jautereau, jotterau, karbau, kérabau, landau, restau, sarrau, saun gau, senau, tamarau, tau, uchau, unau, wau, beu, bisteu, bleu, émeu, enfeu, eu, lieu, neuneu, pneu, rebeu)
   def home
     render json: {
       message: 'welcome',
@@ -36,9 +41,9 @@ class WordsController < ActionController::API
       response = { plural: EXCEPTIONS[word.to_sym] }
     elsif word[-1] == "x" || word[-1] == "z" || word[-1] == "s"
       response = { plural: word }
-    elsif last_letters(word) == "au" || last_letters(word) == "eu" || last_letters(word) == "eau"
+    elsif (last_letters(word) == "au" || last_letters(word) == "eu" || last_letters(word) == "eau") && AU_EXCEPTIONS.include?(word)
       response = { plural: word + "x" }
-    elsif last_letters(word) == "al"
+    elsif last_letters(word) == "al" && AL_EXCEPTIONS.include?(word)
       response = { plural:  word.chop + "ux" }
     else
       response = { plural: word + "s" }
