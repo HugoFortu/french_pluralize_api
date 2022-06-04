@@ -52,7 +52,7 @@ class WordsController < ActionController::API
 
   private
 
-  def last_letters
+  def last_letters(word)
     if word.split('').last(3).join('') == "eau"
       return "eau"
     else
